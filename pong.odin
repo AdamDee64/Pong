@@ -6,7 +6,6 @@ reset game
 auto-start ball movement
 */ 
 
-
 import "core:fmt"
 
 import rl "vendor:raylib"
@@ -39,7 +38,7 @@ Abs :: proc(value : f32) -> f32 {
 }
 
 UpdateScore :: proc(display : ^cstring, score : i32) {
-    // SAFETY HELMETS OFF
+    // SAFETY HELMETS OFF!!
     display^ = fmt.ctprintf("%d", score)
 }
 
@@ -180,7 +179,6 @@ main :: proc() {
 
         }
         
-
         player_cpu.rect.y = Clamp(player_cpu.rect.y, 0, f32(HEIGHT) - p_height)
 
         rl.SetMousePosition(WIDTH / 2, HEIGHT / 2)
@@ -199,7 +197,6 @@ main :: proc() {
         rl.DrawRectangleRec(player_cpu.rect, player_cpu.color)
                     
         rl.EndDrawing()
-
     }
 
     rl.CloseWindow()
