@@ -25,9 +25,10 @@ Sign :: proc(value : f32) -> f32 {
     if value > 0{
         return 1.0
     }
-    else {
+    if value < 0{
         return -1.0
-    }
+    } 
+    return 0.0
 }
 
 Abs :: proc(value : f32) -> f32 {
@@ -38,6 +39,7 @@ Abs :: proc(value : f32) -> f32 {
 }
 
 UpdateScore :: proc(display : ^cstring, score : i32) {
+    // SAFETY HELMETS OFF
     display^ = fmt.ctprintf("%d", score)
 }
 
@@ -55,7 +57,6 @@ main :: proc() {
 
     y_bounce    := [5]f32{0.6, 0.8, 1.0, 1.2, 1.4}
 
-
     player_one_score : i32 = 0
     player_cpu_score : i32 = 0
 
@@ -64,12 +65,11 @@ main :: proc() {
 
     UpdateScore(&player_one_display, player_one_score)
     UpdateScore(&player_cpu_display, player_cpu_score)
-    
 
     start_pos : rl.Vector2 = {
-                                f32(WIDTH) / 2.0 - (b_width / 2.0),
-                                f32(HEIGHT) / 2.0 - (b_height / 2.0)
-                             }
+        f32(WIDTH) / 2.0 - (b_width / 2.0),
+        f32(HEIGHT) / 2.0 - (b_height / 2.0)
+    }
 
     Paddle :: struct{ 
         rect    : rl.Rectangle,
